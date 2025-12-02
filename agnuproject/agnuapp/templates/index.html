@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Intelligence Tool - Advanced AI Research Assistant</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                    <h1>AgNu</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon" id="historyToggle" title="Search History">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" id="themeToggle" title="Toggle Dark Mode">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search History Sidebar -->
+            <aside class="history-sidebar" id="historySidebar">
+                <div class="sidebar-header">
+                    <h3>Search History</h3>
+                    <button class="btn-icon btn-close" id="closeSidebar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <p class="history-empty">No search history yet</p>
+                </div>
+                <button class="btn btn--secondary btn--sm" id="clearHistory">Clear History</button>
+            </aside>
+
+            <!-- Main Search Interface -->
+            <div class="search-container">
+                <!-- Search Modes -->
+                <div class="search-modes">
+                    <div class="mode-toggle">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="webSearchToggle" checked>
+                            <span class="toggle-slider"></span>
+                            <span class="toggle-text">
+                                <svg class="mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                                Web Search
+                            </span>
+                        </label>
+                    </div>
+                    <div class="mode-toggle">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="knowledgeBaseToggle" checked>
+                            <span class="toggle-slider"></span>
+                            <span class="toggle-text">
+                                <svg class="mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                                Knowledge Base
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Search Input -->
+                <div class="search-box">
+                    <div class="search-input-container">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="search-input" 
+                            placeholder="Ask me anything..."
+                            autocomplete="off"
+                        >
+                        <button class="btn-search" id="searchButton">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                            <span>Generate</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Surprise Me Button -->
+                <button class="btn btn--outline surprise-btn" id="surpriseMe">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                    </svg>
+                    Surprise Me
+                </button>
+
+                <!-- Query Analysis -->
+                <div class="query-analysis hidden" id="queryAnalysis"></div>
+
+                <!-- Loading Animation -->
+                <div class="loading-container hidden" id="loadingContainer">
+                    <div class="loading-animation">
+                        <div class="loading-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <p class="loading-text">Analyzing query and generating response...</p>
+                    </div>
+                </div>
+
+                <!-- Results Area -->
+                <div class="results-container hidden" id="resultsContainer">
+                    <div class="result-card">
+                        <!-- Confidence Level -->
+                        <div class="confidence-badge" id="confidenceBadge"></div>
+                        
+                        <!-- Main Response -->
+                        <div class="response-content" id="responseContent"></div>
+                        
+                        <!-- Key Points -->
+                        <div class="key-points" id="keyPoints"></div>
+                        
+                        <!-- Sources -->
+                        <div class="sources-section" id="sourcesSection"></div>
+                        
+                        <!-- Related Topics -->
+                        <div class="related-topics" id="relatedTopics"></div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="result-actions">
+                            <button class="btn btn--secondary btn--sm" id="copyResponse">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copy Response
+                            </button>
+                            <button class="btn btn--secondary btn--sm" id="refineSearch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="M21 21l-4.35-4.35"></path>
+                                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                                </svg>
+                                Refine Search
+                            </button>
+                            <button class="btn btn--primary btn--sm" id="exportResults">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/app.js"></script>
+</body>
+</html>
