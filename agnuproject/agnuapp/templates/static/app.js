@@ -380,11 +380,11 @@ function displayResults(response, query) {
 
   if (response.kbResults.length > 0) {
     const topResult = response.kbResults[0];
-    mainContent += `<h2>${topResult.title}</h2>`;
-    mainContent += `<p>${topResult.content}</p>`;
+    mainContent += `<h2 style="font-style: italic; color: var(--color-text-primary)">${topResult.title}</h2>`;
+    mainContent += `<p style="color:var(--color-text-primary)">${topResult.content}</p>`;
   } else {
-    mainContent += `<h2>${query}</h2>`;
-    mainContent += `<p>Based on current information and web sources, here's what we found about ${query}. The topic is relevant across multiple domains and has various applications in modern contexts.</p>`;
+    mainContent += `<h2 style="font-style: italic; color: var(--color-text-primary)">${query}</h2>`;
+    mainContent += `<p style="color:var(--color-text-primary)">Based on current information and web sources, here's what we found about ${query}. The topic is relevant across multiple domains and has various applications in modern contexts.</p>`;
   }
 
   responseContent.innerHTML = mainContent;
@@ -402,7 +402,7 @@ function displayResults(response, query) {
   }
 
   // Sources
-  let sourcesHTML = '<h3>Sources</h3>';
+  let sourcesHTML = '<h3 style="font-style: italic; color: var(--color-text-primary)">Sources</h3>';
   
   // Knowledge Base Sources
   if (response.kbResults.length > 0) {
@@ -442,8 +442,8 @@ function displayResults(response, query) {
   const relatedTerms = generateRelatedTopics(query, response.kbResults);
   if (relatedTerms.length > 0) {
     relatedTopics.innerHTML = `
-      <h3>Related Topics</h3>
-      <div class="related-items">
+      <h3 style="font-style: italic; color: var(--color-text-primary)">Related Topics</h3>
+      <div class="related-items" style="color: var(--color-text-primary)">
         ${relatedTerms.map(term => `<div class="related-item" onclick="searchRelated('${term}')">${term}</div>`).join('')}
       </div>
     `;

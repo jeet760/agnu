@@ -206,9 +206,9 @@ a:hover {
 }
 
 .logo-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  /* border-radius: 50%; */
   object-fit: cover;
 }
 
@@ -228,8 +228,8 @@ a:hover {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-base);
-  border: 1px solid var(--color-gray-300);
-  background-color: var(--color-white);
+  border: 1px solid var(--color-white);
+  background-color: var(--color-gray-100);
   color: var(--color-text);
   cursor: pointer;
   display: inline-flex;
@@ -239,7 +239,7 @@ a:hover {
 }
 
 .btn-icon:hover {
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-400);
   box-shadow: var(--shadow-xs);
 }
 
@@ -410,7 +410,7 @@ a:hover {
 /* ✅ Blue toggles when checked */
 .toggle-label input[type="checkbox"]:checked + .toggle-slider {
   background: var(--color-toggle-black);
-  box-shadow: 0 0 6px rgba(6, 6, 6, 0.6);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
 .toggle-label input[type="checkbox"]:checked + .toggle-slider::after {
@@ -454,7 +454,7 @@ a:hover {
   background: transparent;
   padding: var(--space-12) var(--space-16);
   font-size: var(--font-size-xl);
-  color: var(--color-text);
+  color: var(--color-text-primary);
   outline: none;
   font-family: var(--font-family-base);
 }
@@ -528,13 +528,13 @@ a:hover {
 }
 
 .btn--outline {
-  background-color: transparent;
-  border: 1px solid var(--color-border);
+  background-color: var(--color-gray-100);
+  border: 1px solid var(--color-white);
   color: var(--color-text);
 }
 
 .btn--outline:hover {
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-400);
 }
 
 .btn--sm {
@@ -638,6 +638,7 @@ a:hover {
 .response-content {
   font-size: var(--font-size-md);
   line-height: 1.7;
+  color: var(--color-text-primary);
 }
 
 /* Key points */
@@ -659,7 +660,7 @@ a:hover {
   border-top: 1px dashed var(--color-gray-200);
   padding-top: var(--space-12);
   font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 /* Related topics */
@@ -779,4 +780,56 @@ a:hover {
   .history-sidebar.active {
     right: 0;
   }
+}
+/* ================================
+   Dark Mode
+   ================================ */
+
+:root[data-color-scheme="dark"] {
+  /* Base */
+  --color-background: #454853;         /* page bg */
+  --color-surface: #020617;            /* cards / surfaces */
+  --color-text: #f9fafb;
+  --color-text-primary: #000000;
+  --color-text-secondary: #94a3b8;
+
+  /* Grays tuned for dark */
+  --color-gray-50: #020617;
+  --color-gray-100: #020617;
+  --color-gray-200: #1e293b;
+  --color-gray-300: #334155;
+  --color-gray-400: #475569;
+  --color-gray-500: #64748b;
+  --color-gray-600: #94a3b8;
+  --color-gray-700: #cbd5f5;
+  --color-gray-800: #e2e8f0;
+  --color-gray-900: #f9fafb;
+
+  /* Borders & cards */
+  --color-border: #1e293b;
+  --color-card-border: #1f2937;
+
+  /* Buttons */
+  --color-primary: #171819;
+  --color-primary-hover: #171819;
+  --color-primary-active: #171819;
+  --color-btn-primary-text: #ffffff;
+
+  --color-secondary: #0b1120;
+  --color-secondary-hover: #020617;
+  --color-secondary-active: #020617;
+
+  /* Status */
+  --color-success: #22c55e;
+  --color-warning: #eab308;
+  --color-error: #f97316;
+  --color-info: #38bdf8;
+
+  /* Focus ring a bit lighter */
+  --focus-ring: 0 0 0 2px rgba(148, 163, 184, 0.9);
+}
+
+/* Optional: smooth transition when toggling */
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
